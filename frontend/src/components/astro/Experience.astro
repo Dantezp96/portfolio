@@ -1,0 +1,164 @@
+---
+const experiences = [
+  {
+    company: "Tech Corp",
+    role: "Senior ML Engineer",
+    period: "Jun 2023 - Present",
+    description: "Leading the computer vision team. Designed and deployed real-time inference pipelines serving 1M+ predictions/day. Reduced model inference latency by 40%.",
+    tech: ["Python", "PyTorch", "Kubernetes", "AWS", "MLflow"],
+  },
+  {
+    company: "Data Solutions Inc",
+    role: "Data Engineer",
+    period: "Mar 2021 - May 2023",
+    description: "Built scalable ETL pipelines processing 5TB+ daily. Migrated legacy batch systems to real-time streaming. Improved data freshness from 24h to 15min.",
+    tech: ["Python", "Apache Spark", "Airflow", "PostgreSQL", "Docker"],
+  },
+  {
+    company: "AI Startup",
+    role: "ML Engineer",
+    period: "Aug 2019 - Feb 2021",
+    description: "Developed NLP models for document classification and entity extraction. Built training pipelines with automated hyperparameter tuning. Achieved 92% accuracy.",
+    tech: ["Python", "TensorFlow", "HuggingFace", "GCP", "FastAPI"],
+  },
+];
+---
+
+<section class="experience section" id="experience">
+  <div class="container">
+    <h2 class="section-title" data-animate="fade-up">Experience</h2>
+    <p class="section-subtitle" data-animate="fade-up">
+      My professional journey
+    </p>
+
+    <div class="timeline">
+      {experiences.map((exp, i) => (
+        <div class="timeline__item" data-animate={i % 2 === 0 ? "slide-left" : "slide-right"}>
+          <div class="timeline__dot" />
+          <div class="timeline__card">
+            <span class="timeline__period">{exp.period}</span>
+            <h3 class="timeline__role">{exp.role}</h3>
+            <h4 class="timeline__company">{exp.company}</h4>
+            <p class="timeline__desc">{exp.description}</p>
+            <div class="timeline__tech">
+              {exp.tech.map((t) => (
+                <span class="timeline__badge">{t}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-accent), var(--color-accent-secondary));
+  }
+
+  .timeline__item {
+    position: relative;
+    padding-left: 60px;
+    padding-bottom: var(--space-2xl);
+  }
+
+  .timeline__item:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline__dot {
+    position: absolute;
+    left: 13px;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: 3px solid var(--color-bg-primary);
+    box-shadow: 0 0 0 3px var(--color-accent-glow);
+    z-index: 1;
+  }
+
+  .timeline__card {
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-normal);
+  }
+
+  .timeline__card:hover {
+    border-color: var(--color-accent);
+    transform: translateX(4px);
+    box-shadow: 0 8px 30px var(--color-shadow);
+  }
+
+  .timeline__period {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .timeline__role {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: var(--space-xs) 0;
+  }
+
+  .timeline__company {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    margin-bottom: var(--space-md);
+  }
+
+  .timeline__desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+  }
+
+  .timeline__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .timeline__badge {
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    background: rgba(108, 99, 255, 0.1);
+    color: var(--color-accent);
+    font-size: var(--font-size-xs);
+    font-family: var(--font-mono);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .timeline::before {
+      left: 12px;
+    }
+    .timeline__dot {
+      left: 5px;
+    }
+    .timeline__item {
+      padding-left: 44px;
+    }
+  }
+</style>

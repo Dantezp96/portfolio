@@ -1,0 +1,154 @@
+---
+// At build time, we use static data. In production, this would fetch from API.
+const skillGroups = [
+  {
+    category: "Languages",
+    skills: [
+      { name: "Python", proficiency: 95 },
+      { name: "SQL", proficiency: 90 },
+      { name: "R", proficiency: 70 },
+      { name: "TypeScript", proficiency: 65 },
+    ],
+  },
+  {
+    category: "ML / Deep Learning",
+    skills: [
+      { name: "PyTorch", proficiency: 90 },
+      { name: "TensorFlow", proficiency: 85 },
+      { name: "Scikit-learn", proficiency: 92 },
+      { name: "HuggingFace", proficiency: 80 },
+      { name: "OpenCV", proficiency: 88 },
+    ],
+  },
+  {
+    category: "Data Engineering",
+    skills: [
+      { name: "Apache Spark", proficiency: 80 },
+      { name: "Apache Airflow", proficiency: 85 },
+      { name: "PostgreSQL", proficiency: 88 },
+      { name: "Docker", proficiency: 85 },
+      { name: "Kubernetes", proficiency: 70 },
+    ],
+  },
+  {
+    category: "Tools & Cloud",
+    skills: [
+      { name: "AWS", proficiency: 80 },
+      { name: "Git", proficiency: 90 },
+      { name: "MLflow", proficiency: 75 },
+      { name: "Linux", proficiency: 85 },
+    ],
+  },
+];
+---
+
+<section class="skills section" id="skills">
+  <div class="container">
+    <h2 class="section-title" data-animate="fade-up">Skills & Technologies</h2>
+    <p class="section-subtitle" data-animate="fade-up">
+      Tools and technologies I work with daily
+    </p>
+
+    <div class="skills__grid" data-animate-stagger>
+      {skillGroups.map((group) => (
+        <div class="skills__group">
+          <h3 class="skills__group-title">{group.category}</h3>
+          <div class="skills__list">
+            {group.skills.map((skill) => (
+              <div class="skills__item">
+                <div class="skills__item-header">
+                  <span class="skills__item-name">{skill.name}</span>
+                  <span class="skills__item-percent">{skill.proficiency}%</span>
+                </div>
+                <div class="skills__bar">
+                  <div
+                    class="skills__bar-fill"
+                    style={`--target-width: ${skill.proficiency}%`}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2xl);
+  }
+
+  .skills__group {
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    transition: border-color var(--transition-normal);
+  }
+
+  .skills__group:hover {
+    border-color: var(--color-accent);
+  }
+
+  .skills__group-title {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: var(--space-lg);
+    font-family: var(--font-mono);
+  }
+
+  .skills__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .skills__item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-xs);
+  }
+
+  .skills__item-name {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .skills__item-percent {
+    font-size: var(--font-size-xs);
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+  }
+
+  .skills__bar {
+    width: 100%;
+    height: 6px;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  .skills__bar-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
+    border-radius: var(--radius-full);
+    transition: width 1s var(--ease-out-expo);
+  }
+
+  .is-visible .skills__bar-fill {
+    width: var(--target-width);
+  }
+
+  @media (max-width: 768px) {
+    .skills__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

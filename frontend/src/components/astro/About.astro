@@ -1,0 +1,114 @@
+---
+import { SITE } from "../../lib/constants";
+---
+
+<section class="about section" id="about">
+  <div class="container">
+    <h2 class="section-title" data-animate="fade-up">About Me</h2>
+    <p class="section-subtitle" data-animate="fade-up">
+      Turning complex data into intelligent solutions
+    </p>
+
+    <div class="about__grid">
+      <div class="about__text" data-animate="slide-left">
+        <p>
+          I'm a Data & ML Engineer passionate about building end-to-end machine learning
+          systems that solve real-world problems. With experience spanning computer vision,
+          NLP, and data engineering, I specialize in taking models from research to production.
+        </p>
+        <p>
+          My approach combines strong software engineering practices with deep understanding
+          of ML fundamentals. I believe the best ML systems are not just accurate, but also
+          reliable, scalable, and maintainable.
+        </p>
+        <p>
+          When I'm not training models or building pipelines, I enjoy contributing to
+          open-source projects and writing about ML engineering best practices.
+        </p>
+      </div>
+
+      <div class="about__stats" data-animate="slide-right" data-animate-stagger>
+        <div class="about__stat">
+          <span class="about__stat-number">5+</span>
+          <span class="about__stat-label">Years Experience</span>
+        </div>
+        <div class="about__stat">
+          <span class="about__stat-number">20+</span>
+          <span class="about__stat-label">Projects Deployed</span>
+        </div>
+        <div class="about__stat">
+          <span class="about__stat-number">1M+</span>
+          <span class="about__stat-label">Predictions / Day</span>
+        </div>
+        <div class="about__stat">
+          <span class="about__stat-number">5TB+</span>
+          <span class="about__stat-label">Data Processed Daily</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+  }
+
+  .about__text p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+    line-height: 1.8;
+  }
+
+  .about__text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .about__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+  }
+
+  .about__stat {
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    text-align: center;
+    transition: all var(--transition-normal);
+  }
+
+  .about__stat:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px var(--color-shadow);
+  }
+
+  .about__stat-number {
+    display: block;
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-xs);
+  }
+
+  .about__stat-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+  }
+</style>

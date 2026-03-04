@@ -1,0 +1,122 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/astro/Header.astro";
+import Hero from "../components/astro/Hero.astro";
+import About from "../components/astro/About.astro";
+import Skills from "../components/astro/Skills.astro";
+import Experience from "../components/astro/Experience.astro";
+import Footer from "../components/astro/Footer.astro";
+import Carousel3D from "../components/react/Carousel3D/Carousel3D.tsx";
+import ContactForm from "../components/react/ContactForm.tsx";
+import ThemeToggle from "../components/react/ThemeToggle.tsx";
+
+// Static project data for build time (fallback when API is not available)
+const projects = [
+  {
+    id: 1,
+    slug: "real-time-object-detection",
+    title: "Real-Time Object Detection",
+    short_description: "YOLOv8-based detection system processing live video feeds at 30+ FPS with custom-trained models.",
+    category: "Computer Vision",
+    tech_stack: ["Python", "YOLOv8", "OpenCV", "PyTorch", "FastAPI", "WebSocket"],
+    thumbnail_url: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=640&q=80",
+    demo_url: null,
+    repo_url: null,
+    metrics: null,
+  },
+  {
+    id: 2,
+    slug: "satellite-image-segmentation",
+    title: "Satellite Image Segmentation",
+    short_description: "U-Net architecture for land-use classification from satellite imagery with 96% pixel accuracy.",
+    category: "Image Analysis",
+    tech_stack: ["Python", "TensorFlow", "Rasterio", "GDAL", "Docker", "AWS S3"],
+    thumbnail_url: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=640&q=80",
+    demo_url: null,
+    repo_url: null,
+    metrics: null,
+  },
+  {
+    id: 3,
+    slug: "nlp-sentiment-dashboard",
+    title: "NLP Sentiment Dashboard",
+    short_description: "Real-time sentiment analysis dashboard processing 10K+ tweets/min with transformer models.",
+    category: "NLP",
+    tech_stack: ["Python", "HuggingFace", "Streamlit", "Kafka", "PostgreSQL", "Docker"],
+    thumbnail_url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=80",
+    demo_url: null,
+    repo_url: null,
+    metrics: null,
+  },
+  {
+    id: 4,
+    slug: "data-pipeline-etl",
+    title: "Automated ETL Pipeline",
+    short_description: "Scalable data pipeline processing 5TB+ daily with Apache Airflow and Spark on Kubernetes.",
+    category: "Data Engineering",
+    tech_stack: ["Python", "Apache Airflow", "PySpark", "Kubernetes", "AWS", "Terraform"],
+    thumbnail_url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=640&q=80",
+    demo_url: null,
+    repo_url: null,
+    metrics: null,
+  },
+  {
+    id: 5,
+    slug: "medical-image-classification",
+    title: "Medical Image Classification",
+    short_description: "Deep learning model for X-ray anomaly detection achieving 97.3% sensitivity in clinical validation.",
+    category: "Computer Vision",
+    tech_stack: ["Python", "PyTorch", "MONAI", "GradCAM", "FastAPI", "DICOM"],
+    thumbnail_url: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=640&q=80",
+    demo_url: null,
+    repo_url: null,
+    metrics: null,
+  },
+  {
+    id: 6,
+    slug: "time-series-forecasting",
+    title: "Energy Demand Forecasting",
+    short_description: "LSTM + Transformer hybrid model for 24h energy demand prediction with 2.1% MAPE.",
+    category: "ML / Time Series",
+    tech_stack: ["Python", "PyTorch", "Prophet", "MLflow", "Redis", "Grafana"],
+    thumbnail_url: "https://images.unsplash.com/photo-1509390874006-6c7f5e17d8c4?w=640&q=80",
+    demo_url: null,
+    repo_url: null,
+    metrics: null,
+  },
+];
+---
+
+<BaseLayout>
+  <Header>
+    <ThemeToggle client:load slot="theme-toggle" />
+  </Header>
+
+  <main>
+    <Hero />
+    <About />
+    <Skills />
+
+    <section class="section" id="projects">
+      <div class="container">
+        <Carousel3D client:visible projects={projects} />
+      </div>
+    </section>
+
+    <Experience />
+
+    <section class="section" id="contact">
+      <div class="container">
+        <ContactForm client:visible />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  main {
+    padding-top: var(--header-height);
+  }
+</style>

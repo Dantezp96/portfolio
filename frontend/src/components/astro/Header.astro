@@ -1,0 +1,198 @@
+---
+import { NAV_LINKS, SITE } from "../../lib/constants";
+---
+
+<header class="header" id="header">
+  <nav class="header__nav container">
+    <a href="#" class="header__logo">
+      <span class="header__logo-bracket">&lt;</span>
+      <span class="header__logo-name">{SITE.author}</span>
+      <span class="header__logo-bracket">/&gt;</span>
+    </a>
+
+    <ul class="header__links" id="nav-links">
+      {NAV_LINKS.map((link) => (
+        <li>
+          <a href={link.href} class="header__link">{link.label}</a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="header__actions">
+      <div id="theme-toggle-slot">
+        <slot name="theme-toggle" />
+      </div>
+      <button class="header__menu-btn" id="menu-btn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--header-height);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(250, 250, 250, 0.8);
+    border-bottom: 1px solid var(--color-border);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  :global([data-theme="dark"]) .header {
+    background: rgba(10, 10, 26, 0.85);
+  }
+
+  .header.scrolled {
+    box-shadow: 0 4px 20px var(--color-shadow);
+  }
+
+  .header__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .header__logo {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    display: flex;
+    gap: 2px;
+  }
+
+  .header__logo:hover {
+    color: var(--color-text-primary);
+  }
+
+  .header__logo-bracket {
+    color: var(--color-accent);
+  }
+
+  .header__links {
+    display: flex;
+    gap: var(--space-xl);
+  }
+
+  .header__link {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    position: relative;
+    padding: var(--space-xs) 0;
+  }
+
+  .header__link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width var(--transition-normal);
+  }
+
+  .header__link:hover {
+    color: var(--color-accent);
+  }
+
+  .header__link:hover::after {
+    width: 100%;
+  }
+
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .header__menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--space-xs);
+  }
+
+  .header__menu-btn span {
+    width: 22px;
+    height: 2px;
+    background: var(--color-text-primary);
+    border-radius: 2px;
+    transition: transform var(--transition-normal), opacity var(--transition-fast);
+  }
+
+  .header__menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .header__menu-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .header__menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  @media (max-width: 768px) {
+    .header__menu-btn {
+      display: flex;
+    }
+
+    .header__links {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-lg);
+      padding: var(--space-2xl);
+      background: var(--color-bg-primary);
+      border-bottom: 1px solid var(--color-border);
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform var(--transition-normal), opacity var(--transition-normal);
+    }
+
+    .header__links.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+</style>
+
+<script>
+  // Scroll effect
+  const header = document.getElementById("header");
+  window.addEventListener("scroll", () => {
+    header?.classList.toggle("scrolled", window.scrollY > 50);
+  });
+
+  // Mobile menu
+  const menuBtn = document.getElementById("menu-btn");
+  const navLinks = document.getElementById("nav-links");
+  menuBtn?.addEventListener("click", () => {
+    menuBtn.classList.toggle("active");
+    navLinks?.classList.toggle("open");
+  });
+
+  // Close menu on link click
+  navLinks?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menuBtn?.classList.remove("active");
+      navLinks?.classList.remove("open");
+    });
+  });
+</script>
