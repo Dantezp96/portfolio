@@ -1,10 +1,10 @@
 export const SITE = {
-  title: "Omar Daniel Zorro | Data & ML Engineer",
+  title: "Omar Daniel Zorro | Data Scientist & ML Engineer",
   description:
-    "Omar Daniel Zorro - Data & ML Engineer specializing in image analysis, computer vision, and data science. Explore my projects and experience.",
+    "Omar Daniel Zorro - Data Scientist & ML Engineer specializing in image analysis, computer vision, and data science. Explore my projects and experience.",
   url: "https://omardanielzorro.vercel.app",
   author: "Omar Daniel Zorro",
-  role: "Data & ML Engineer",
+  role: "Data Scientist & ML Engineer",
 };
 
 export const API_URL =

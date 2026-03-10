@@ -10,31 +10,32 @@ PROJECTS = [
     Project(
         slug="real-time-object-detection",
         title="Real-Time Object Detection",
-        short_description="YOLOv8-based detection system processing live video feeds at 30+ FPS with custom-trained models.",
-        full_description="Built a real-time object detection pipeline using YOLOv8 with custom training on domain-specific data. The system processes live RTSP video feeds, performs inference on GPU, and streams annotated results via WebSocket. Achieved 94.2% mAP on the validation set.",
+        short_description="YOLOv8 running 100% in the browser via ONNX Runtime Web — live webcam, image upload, demo gallery with sci-fi bounding boxes.",
+        full_description="Built an in-browser real-time object detection app using YOLOv8-nano running via ONNX Runtime Web (WebAssembly). No backend needed — all inference happens client-side for total privacy. Features 3 detection modes (live webcam, image upload, demo gallery), sci-fi styled bounding boxes with neon glow, real-time FPS gauge, class breakdown stats, confidence threshold slider, and screenshot export. Bilingual ES/EN interface. 80 COCO classes detected.",
         category="Computer Vision",
-        tech_stack=["Python", "YOLOv8", "OpenCV", "PyTorch", "FastAPI", "WebSocket"],
+        tech_stack=["React", "TypeScript", "ONNX Runtime", "YOLOv8", "Canvas API", "Vite"],
         thumbnail_url="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=640&q=80",
         cover_image_url="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&q=80",
-        demo_url="https://demo.example.com/detection",
-        repo_url="https://github.com/youruser/object-detection",
+        demo_url="https://real-time-object-detection-three.vercel.app",
+        repo_url="https://github.com/Dantezp96/real-time-object-detection",
         display_order=1,
         is_featured=True,
-        metrics='{"mAP": "94.2%", "FPS": "32", "Classes": "15"}',
+        metrics='{"Classes": "80 COCO", "Model": "YOLOv8n", "Inference": "Browser WASM"}',
     ),
     Project(
         slug="satellite-image-segmentation",
         title="Satellite Image Segmentation",
-        short_description="U-Net architecture for land-use classification from satellite imagery with 96% pixel accuracy.",
-        full_description="Developed a semantic segmentation model using a U-Net architecture with ResNet-50 encoder for classifying land use from high-resolution satellite imagery. The pipeline processes raw GeoTIFF data, handles tiling and augmentation, and produces georeferenced prediction masks.",
+        short_description="FLAIR U-Net+ResNet34 trained on real aerial imagery, running in the browser via ONNX Runtime Web — interactive satellite map with 15-class land cover segmentation.",
+        full_description="Built an in-browser satellite image segmentation app using the FLAIR U-Net with ResNet34 encoder (trained on 218K real aerial imagery patches from French IGN at 0.2m/px) running via ONNX Runtime Web (WebAssembly). Features interactive MapLibre GL map with ESRI satellite tiles, image upload, demo gallery, 15 land cover classes (Building, Water, Coniferous, Deciduous, Agricultural Land, Bare Soil, Herbaceous, and more), real-time class distribution pie chart and stats, opacity slider, and bilingual ES/EN interface. Model quantized to 23MB INT8.",
         category="Image Analysis",
-        tech_stack=["Python", "TensorFlow", "Rasterio", "GDAL", "Docker", "AWS S3"],
+        tech_stack=["React", "TypeScript", "ONNX Runtime", "PyTorch", "MapLibre GL", "Vite"],
         thumbnail_url="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=640&q=80",
         cover_image_url="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&q=80",
-        repo_url="https://github.com/youruser/satellite-segmentation",
+        demo_url="https://satellite-image-segmentation.vercel.app",
+        repo_url="https://github.com/Dantezp96/satellite-image-segmentation",
         display_order=2,
         is_featured=True,
-        metrics='{"Pixel Accuracy": "96.1%", "IoU": "0.89", "Dataset": "50K tiles"}',
+        metrics='{"Classes": "15 Land Cover", "Model": "FLAIR U-Net ResNet34", "Size": "23MB INT8"}',
     ),
     Project(
         slug="nlp-sentiment-dashboard",
@@ -68,30 +69,32 @@ PROJECTS = [
     Project(
         slug="medical-image-classification",
         title="Medical Image Classification",
-        short_description="Deep learning model for X-ray anomaly detection achieving 97.3% sensitivity in clinical validation.",
-        full_description="Developed a CNN-based classification system for detecting anomalies in chest X-ray images. Used transfer learning with EfficientNet-B4, trained on a curated dataset of 120K images. The model includes GradCAM explainability for clinical interpretability.",
+        short_description="Multi-modal AI medical diagnosis: chest X-ray (18 pathologies + GradCAM), skin cancer (7 types), and brain tumor (4 classes) — 100% in-browser.",
+        full_description="Built a multi-modal medical image classification platform with 3 AI models running entirely in the browser. Chest X-Ray mode uses DenseNet121 trained on 400K+ images detecting 18 pulmonary conditions with GradCAM heatmaps. Skin Cancer mode uses MobileNetV2 on HAM10000 classifying 7 lesion types including Melanoma. Brain Tumor mode uses Swin Transformer on brain MRIs detecting Glioma, Meningioma, and Pituitary tumors. All inference via ONNX Runtime Web WASM — zero server, complete privacy.",
         category="Computer Vision",
-        tech_stack=["Python", "PyTorch", "MONAI", "GradCAM", "FastAPI", "DICOM"],
+        tech_stack=["React", "TypeScript", "ONNX Runtime Web", "DenseNet121", "MobileNetV2", "Swin Transformer", "GradCAM", "Vite"],
         thumbnail_url="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=640&q=80",
         cover_image_url="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=1200&q=80",
+        live_url="https://medical-image-classification-gilt.vercel.app",
+        github_url="https://github.com/Dantezp96/medical-image-classification",
         display_order=5,
         is_featured=True,
-        metrics='{"Sensitivity": "97.3%", "Specificity": "95.1%", "AUC": "0.98"}',
+        metrics='{"Models": "3", "Classes": "29 total", "Inference": "<1.5s", "Privacy": "100% Browser"}',
     ),
     Project(
         slug="time-series-forecasting",
         title="Energy Demand Forecasting",
-        short_description="Interactive React + FastAPI dashboard with Prophet model for 7-day energy demand prediction with 4.76% MAPE.",
-        full_description="Built an interactive energy demand forecasting dashboard using Facebook Prophet for time series prediction. Features historical data visualization with zoom/pan, 1-7 day forecasting with confidence intervals, and actual vs predicted comparison. React frontend with Recharts and FastAPI backend.",
+        short_description="Multi-model forecasting dashboard comparing Prophet, Fourier Series, Seasonal Naive and Weekly Average on PJM energy data — best MAPE 4.47%.",
+        full_description="Built an interactive energy demand forecasting dashboard comparing 4 prediction models: Facebook Prophet, Fourier Series regression, Seasonal Naive, and Weekly Average. Features bilingual ES/EN interface, historical data with aggregation controls, 1-7 day forecasting with model selection, and a multi-model comparison chart with metrics table. React + Recharts frontend, FastAPI backend, deployed on Vercel + Railway.",
         category="ML / Time Series",
-        tech_stack=["Python", "FastAPI", "Prophet", "React", "Recharts", "Pandas"],
+        tech_stack=["Python", "FastAPI", "Prophet", "NumPy", "React", "Recharts", "Pandas"],
         thumbnail_url="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=640&q=80",
         cover_image_url="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&q=80",
         demo_url="https://energy-forecast-xi.vercel.app",
         repo_url="https://github.com/Dantezp96/energy-demand-forecasting",
         display_order=6,
         is_featured=True,
-        metrics='{"MAPE": "2.1%", "Horizon": "24h", "Features": "45+"}',
+        metrics='{"Best MAPE": "4.47%", "Models": "4", "Records": "35K+"}',
     ),
 ]
 
@@ -163,5 +166,39 @@ async def seed():
         print(f"Seeded {len(PROJECTS)} projects, {len(SKILLS)} skills, {len(EXPERIENCES)} experiences")
 
 
+async def update_project(slug: str):
+    """Update a single project by slug using data from PROJECTS list."""
+    from sqlalchemy import select
+
+    target = next((p for p in PROJECTS if p.slug == slug), None)
+    if not target:
+        print(f"Project '{slug}' not found in PROJECTS list")
+        return
+
+    async with async_session() as session:
+        result = await session.execute(select(Project).where(Project.slug == slug))
+        existing = result.scalar_one_or_none()
+        if not existing:
+            print(f"Project '{slug}' not found in database")
+            return
+
+        existing.short_description = target.short_description
+        existing.full_description = target.full_description
+        existing.tech_stack = target.tech_stack
+        existing.metrics = target.metrics
+        existing.demo_url = target.demo_url
+        existing.repo_url = target.repo_url
+        await session.commit()
+        print(f"Updated project '{slug}' successfully")
+
+
 if __name__ == "__main__":
-    asyncio.run(seed())
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "update":
+        slug = sys.argv[2] if len(sys.argv) > 2 else None
+        if slug:
+            asyncio.run(update_project(slug))
+        else:
+            print("Usage: python seed.py update <slug>")
+    else:
+        asyncio.run(seed())
