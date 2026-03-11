@@ -4,7 +4,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://yourportfolio.vercel.app",
+  site: "https://frontend-mauve-seven-17.vercel.app",
   integrations: [react()],
   vite: {
     css: {
