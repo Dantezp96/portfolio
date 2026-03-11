@@ -4,7 +4,7 @@ export const SITE = {
     "Omar Daniel Zorro - Data Scientist & ML Engineer specializing in image analysis, computer vision, and data science. Explore my projects and experience.",
   url: "https://omardanielzorro.vercel.app",
   author: "Omar Daniel Zorro",
-  role: "Data Scientist & ML Engineer",
+  role: "Data & AI Engineer",
 };
 
 export const API_URL =
