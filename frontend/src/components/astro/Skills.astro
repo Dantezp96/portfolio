@@ -2,41 +2,43 @@
 // At build time, we use static data. In production, this would fetch from API.
 const skillGroups = [
   {
-    category: "Languages",
+    category: "AI & Machine Learning",
     skills: [
-      { name: "Python", proficiency: 95 },
-      { name: "SQL", proficiency: 90 },
-      { name: "R", proficiency: 70 },
-      { name: "TypeScript", proficiency: 65 },
+      { name: "LLMs / RAG / GenAI", proficiency: 90 },
+      { name: "XGBoost / Scikit-learn", proficiency: 88 },
+      { name: "PyTorch", proficiency: 85 },
+      { name: "NLP / TF-IDF", proficiency: 85 },
+      { name: "HuggingFace", proficiency: 80 },
     ],
   },
   {
-    category: "ML / Deep Learning",
+    category: "Languages & Frameworks",
     skills: [
-      { name: "PyTorch", proficiency: 90 },
-      { name: "TensorFlow", proficiency: 85 },
-      { name: "Scikit-learn", proficiency: 92 },
-      { name: "HuggingFace", proficiency: 80 },
-      { name: "OpenCV", proficiency: 88 },
+      { name: "Python (Django, FastAPI)", proficiency: 95 },
+      { name: "SQL (PostgreSQL, SQL Server)", proficiency: 90 },
+      { name: "Pandas / Polars / PySpark", proficiency: 92 },
+      { name: "JavaScript / TypeScript", proficiency: 75 },
+      { name: "Angular / React / Next.js", proficiency: 70 },
     ],
   },
   {
     category: "Data Engineering",
     skills: [
-      { name: "Apache Spark", proficiency: 80 },
-      { name: "Apache Airflow", proficiency: 85 },
-      { name: "PostgreSQL", proficiency: 88 },
+      { name: "Apache Airflow", proficiency: 90 },
+      { name: "Celery (Workers)", proficiency: 88 },
+      { name: "ETL / ELT Pipelines", proficiency: 92 },
       { name: "Docker", proficiency: 85 },
-      { name: "Kubernetes", proficiency: 70 },
+      { name: "Data Quality / Validation", proficiency: 88 },
     ],
   },
   {
-    category: "Tools & Cloud",
+    category: "Cloud & Infrastructure",
     skills: [
-      { name: "AWS", proficiency: 80 },
-      { name: "Git", proficiency: 90 },
-      { name: "MLflow", proficiency: 75 },
-      { name: "Linux", proficiency: 85 },
+      { name: "Azure (Container Apps, ACR)", proficiency: 88 },
+      { name: "Azure OpenAI Service", proficiency: 85 },
+      { name: "Azure Blob / PostgreSQL", proficiency: 85 },
+      { name: "CI/CD (Azure DevOps, Git)", proficiency: 82 },
+      { name: "Power BI / Grafana", proficiency: 75 },
     ],
   },
 ];
