@@ -11,7 +11,7 @@ import { SITE } from "../../lib/constants";
 
   <div class="hero__content container">
     <p class="hero__greeting" data-animate="fade-up">
-      <span class="hero__greeting-accent">Hello, I'm</span>
+      <span class="hero__greeting-accent" data-i18n="hero.greeting">Hello, I'm</span>
     </p>
     <h1 class="hero__name" data-animate="fade-up">
       {SITE.author}
@@ -20,19 +20,19 @@ import { SITE } from "../../lib/constants";
       <span class="hero__role-typed">{SITE.role}</span>
       <span class="hero__cursor">|</span>
     </h2>
-    <p class="hero__tagline" data-animate="fade-up">
+    <p class="hero__tagline" data-animate="fade-up" id="hero-tagline">
       Building enterprise AI solutions for healthcare — from ETL pipelines processing millions of records to generative AI platforms in production.
       <br />
       Data Engineering &bull; Generative AI &bull; Machine Learning &bull; Cloud (Azure)
     </p>
     <div class="hero__cta" data-animate="fade-up">
-      <a href="#projects" class="hero__btn hero__btn--primary">
+      <a href="#projects" class="hero__btn hero__btn--primary" data-i18n="hero.viewWork">
         View My Work
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M7 17L17 7M17 7H7M17 7v10"/>
         </svg>
       </a>
-      <a href="#contact" class="hero__btn hero__btn--secondary">
+      <a href="#contact" class="hero__btn hero__btn--secondary" data-i18n="hero.getInTouch">
         Get in Touch
       </a>
     </div>
@@ -42,7 +42,7 @@ import { SITE } from "../../lib/constants";
     <div class="hero__scroll-mouse">
       <div class="hero__scroll-wheel"></div>
     </div>
-    <span>Scroll down</span>
+    <span data-i18n="hero.scroll">Scroll down</span>
   </div>
 </section>
 

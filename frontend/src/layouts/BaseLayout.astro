@@ -63,5 +63,69 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
       import { setupScrollAnimations } from "../lib/animations";
       document.addEventListener("DOMContentLoaded", setupScrollAnimations);
     </script>
+
+    <script>
+      import { translations, LOCALE_KEY, LOCALE_EVENT } from "../lib/i18n";
+      import type { Locale } from "../lib/i18n";
+
+      function getNestedValue(obj: any, path: string): string | undefined {
+        return path.split(".").reduce((acc, key) => acc?.[key], obj);
+      }
+
+      function applyI18n() {
+        const locale = (localStorage.getItem(LOCALE_KEY) || "en") as Locale;
+        const t = translations[locale];
+
+        // data-i18n="section.key" → textContent
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = (el as HTMLElement).dataset.i18n!;
+          const value = getNestedValue(t, key);
+          if (value) el.textContent = value;
+        });
+
+        // data-i18n-html="section.key" → innerHTML
+        document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+          const key = (el as HTMLElement).dataset.i18nHtml!;
+          const value = getNestedValue(t, key);
+          if (value) el.innerHTML = value;
+        });
+
+        // Hero tagline (special: has <br> + HTML entities)
+        const heroTagline = document.getElementById("hero-tagline");
+        if (heroTagline) {
+          heroTagline.innerHTML = `${t.hero.tagline}<br />${t.hero.descriptors}`;
+        }
+
+        // View My Work button (preserve SVG child)
+        document.querySelectorAll("[data-i18n='hero.viewWork']").forEach((el) => {
+          const svg = el.querySelector("svg");
+          const textNode = el.firstChild;
+          if (textNode && textNode.nodeType === 3) {
+            textNode.textContent = t.hero.viewWork + " ";
+          }
+        });
+
+        // Skill categories
+        const catMap = (t.skills as any).categories;
+        document.querySelectorAll("[data-i18n-cat]").forEach((el) => {
+          const key = (el as HTMLElement).dataset.i18nCat!;
+          if (catMap?.[key]) el.textContent = catMap[key];
+        });
+
+        // Experience jobs
+        const jobs = (t.experience as any).jobs;
+        if (jobs) {
+          document.querySelectorAll("[data-i18n-job]").forEach((el) => {
+            const path = (el as HTMLElement).dataset.i18nJob!; // e.g. "0.role"
+            const [idx, field] = path.split(".");
+            const job = jobs[parseInt(idx)];
+            if (job?.[field]) el.textContent = job[field];
+          });
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", applyI18n);
+      window.addEventListener(LOCALE_EVENT, applyI18n);
+    </script>
   </body>
 </html>

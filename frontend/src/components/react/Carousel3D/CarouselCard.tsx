@@ -1,5 +1,6 @@
 import { calculateRadius, getAnglePerCard } from "./carousel.utils";
 import type { CarouselProject } from "./types";
+import { useLocale } from "../../../lib/useLocale";
 import styles from "./Carousel3D.module.css";
 
 interface CardProps {
@@ -13,6 +14,7 @@ interface CardProps {
 export function CarouselCard({ project, index, totalCards, isActive, onClick }: CardProps) {
   const angle = getAnglePerCard(totalCards) * index;
   const radius = calculateRadius(totalCards);
+  const { t } = useLocale();
 
   return (
     <article
@@ -49,7 +51,7 @@ export function CarouselCard({ project, index, totalCards, isActive, onClick }: 
               className={styles.cardLink}
               onClick={(e) => e.stopPropagation()}
             >
-              View Details
+              {t.projects.viewDetails}
             </a>
             {project.demo_url && (
               <a
@@ -59,7 +61,7 @@ export function CarouselCard({ project, index, totalCards, isActive, onClick }: 
                 className={`${styles.cardLink} ${styles.cardLinkOutline}`}
                 onClick={(e) => e.stopPropagation()}
               >
-                Live Demo
+                {t.projects.liveDemo}
               </a>
             )}
           </div>

@@ -13,12 +13,15 @@ import { NAV_LINKS, SITE } from "../../lib/constants";
     <ul class="header__links" id="nav-links">
       {NAV_LINKS.map((link) => (
         <li>
-          <a href={link.href} class="header__link">{link.label}</a>
+          <a href={link.href} class="header__link" data-i18n-nav={link.href.replace("#", "")}>{link.label}</a>
         </li>
       ))}
     </ul>
 
     <div class="header__actions">
+      <div id="lang-toggle-slot">
+        <slot name="lang-toggle" />
+      </div>
       <div id="theme-toggle-slot">
         <slot name="theme-toggle" />
       </div>
@@ -195,4 +198,22 @@ import { NAV_LINKS, SITE } from "../../lib/constants";
       navLinks?.classList.remove("open");
     });
   });
+
+  // i18n nav labels
+  const navI18n: Record<string, Record<string, string>> = {
+    en: { about: "About", skills: "Skills", projects: "Projects", experience: "Experience", contact: "Contact" },
+    es: { about: "Acerca", skills: "Habilidades", projects: "Proyectos", experience: "Experiencia", contact: "Contacto" },
+  };
+
+  function updateNavLocale() {
+    const locale = localStorage.getItem("portfolio-locale") || "en";
+    const labels = navI18n[locale] || navI18n.en;
+    document.querySelectorAll("[data-i18n-nav]").forEach((el) => {
+      const key = (el as HTMLElement).dataset.i18nNav!;
+      if (labels[key]) el.textContent = labels[key];
+    });
+  }
+
+  updateNavLocale();
+  window.addEventListener("locale-change", updateNavLocale);
 </script>

@@ -2,6 +2,7 @@ import { useCarousel } from "./useCarousel";
 import { CarouselCard } from "./CarouselCard";
 import { calculateRadius } from "./carousel.utils";
 import type { CarouselProject } from "./types";
+import { useLocale } from "../../../lib/useLocale";
 import styles from "./Carousel3D.module.css";
 
 interface Carousel3DProps {
@@ -17,12 +18,13 @@ export default function Carousel3D({ projects }: Carousel3DProps) {
     });
 
   const radius = calculateRadius(projects.length);
+  const { t } = useLocale();
 
   return (
     <div className={styles.carouselWrapper}>
-      <h2 className={styles.carouselTitle}>Featured Projects</h2>
+      <h2 className={styles.carouselTitle}>{t.projects.title}</h2>
       <p className={styles.carouselSubtitle}>
-        Click on a project to explore it
+        {t.projects.subtitle}
       </p>
 
       {/* 3D Scene */}
@@ -52,7 +54,7 @@ export default function Carousel3D({ projects }: Carousel3DProps) {
         <button
           className={styles.controlBtn}
           onClick={controls.prev}
-          aria-label="Previous project"
+          aria-label={t.projects.prev}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M15 18l-6-6 6-6" />
@@ -73,7 +75,7 @@ export default function Carousel3D({ projects }: Carousel3DProps) {
         <button
           className={styles.controlBtn}
           onClick={controls.next}
-          aria-label="Next project"
+          aria-label={t.projects.next}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M9 18l6-6-6-6" />

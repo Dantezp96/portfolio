@@ -1,10 +1,12 @@
 import { useState, type FormEvent } from "react";
 import { submitContact } from "../../lib/api";
+import { useLocale } from "../../lib/useLocale";
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const { t } = useLocale();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -15,7 +17,7 @@ export default function ContactForm() {
       setForm({ name: "", email: "", subject: "", message: "" });
     } catch (err) {
       setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong");
+      setErrorMsg(err instanceof Error ? err.message : t.contact.error);
     }
   };
 
@@ -46,7 +48,7 @@ export default function ContactForm() {
           backgroundClip: "text",
         }}
       >
-        Get in Touch
+        {t.contact.title}
       </h2>
       <p
         style={{
@@ -56,7 +58,7 @@ export default function ContactForm() {
           marginBottom: "var(--space-2xl)",
         }}
       >
-        Let's build something together
+        {t.contact.subtitle}
       </p>
 
       {status === "success" ? (
@@ -70,10 +72,10 @@ export default function ContactForm() {
           }}
         >
           <p style={{ fontSize: "var(--font-size-lg)", fontWeight: 600, color: "var(--color-accent-secondary)" }}>
-            Message sent!
+            {t.contact.success}
           </p>
           <p style={{ color: "var(--color-text-secondary)", marginTop: "var(--space-sm)" }}>
-            I'll get back to you soon.
+            {t.contact.successSub}
           </p>
           <button
             onClick={() => setStatus("idle")}
@@ -88,7 +90,7 @@ export default function ContactForm() {
               border: "none",
             }}
           >
-            Send another
+            {t.contact.sendAnother}
           </button>
         </div>
       ) : (
@@ -96,7 +98,7 @@ export default function ContactForm() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-md)" }}>
             <input
               type="text"
-              placeholder="Your name"
+              placeholder={t.contact.name}
               required
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
@@ -104,7 +106,7 @@ export default function ContactForm() {
             />
             <input
               type="email"
-              placeholder="Your email"
+              placeholder={t.contact.email}
               required
               value={form.email}
               onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
@@ -113,13 +115,13 @@ export default function ContactForm() {
           </div>
           <input
             type="text"
-            placeholder="Subject (optional)"
+            placeholder={t.contact.subject}
             value={form.subject}
             onChange={(e) => setForm((f) => ({ ...f, subject: e.target.value }))}
             style={inputStyle}
           />
           <textarea
-            placeholder="Your message"
+            placeholder={t.contact.message}
             required
             rows={5}
             value={form.message}
@@ -147,7 +149,7 @@ export default function ContactForm() {
               boxShadow: "0 4px 20px var(--color-accent-glow)",
             }}
           >
-            {status === "sending" ? "Sending..." : "Send Message"}
+            {status === "sending" ? t.contact.sending : t.contact.send}
           </button>
         </form>
       )}

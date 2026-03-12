@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { API_URL } from "../../lib/constants";
+import { useLocale } from "../../lib/useLocale";
 
 interface Message {
   role: "user" | "assistant";
@@ -14,6 +15,7 @@ export default function ChatWidget() {
   const [error, setError] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { t } = useLocale();
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -42,14 +44,14 @@ export default function ChatWidget() {
       });
 
       if (res.status === 429) {
-        setError("Too many messages. Wait a moment.");
+        setError(t.chat.rateLimit);
         setLoading(false);
         return;
       }
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({ detail: "Error" }));
-        setError(data.detail || "Error sending message");
+        setError(data.detail || t.chat.sendError);
         setLoading(false);
         return;
       }
@@ -57,7 +59,7 @@ export default function ChatWidget() {
       const data = await res.json();
       setMessages([...newMessages, { role: "assistant", content: data.reply }]);
     } catch {
-      setError("Connection error. Try again.");
+      setError(t.chat.connectionError);
     } finally {
       setLoading(false);
     }
@@ -130,10 +132,10 @@ export default function ChatWidget() {
             }}
           >
             <div style={{ fontWeight: 700, fontSize: "14px", color: "var(--color-text-primary)" }}>
-              Portfolio Assistant
+              {t.chat.title}
             </div>
             <div style={{ fontSize: "12px", color: "var(--color-text-muted)", marginTop: "2px" }}>
-              Ask about Omar's projects & experience
+              {t.chat.subtitle}
             </div>
           </div>
 
@@ -151,9 +153,9 @@ export default function ChatWidget() {
             {messages.length === 0 && (
               <div style={{ textAlign: "center", padding: "32px 16px", color: "var(--color-text-muted)", fontSize: "13px" }}>
                 <div style={{ fontSize: "32px", marginBottom: "8px" }}>💬</div>
-                Try asking:<br />
-                "What projects does Omar have?"<br />
-                "What tech stack does he use?"
+                {t.chat.tryAsking}<br />
+                "{t.chat.q1}"<br />
+                "{t.chat.q2}"
               </div>
             )}
             {messages.map((m, i) => (
@@ -187,7 +189,7 @@ export default function ChatWidget() {
                   color: "var(--color-text-muted)",
                 }}
               >
-                Thinking...
+                {t.chat.thinking}
               </div>
             )}
             {error && (
@@ -214,7 +216,7 @@ export default function ChatWidget() {
               value={input}
               onChange={(e) => setInput(e.target.value.slice(0, 500))}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-              placeholder={messages.length >= 20 ? "Message limit reached" : "Type a message..."}
+              placeholder={messages.length >= 20 ? t.chat.limitReached : t.chat.placeholder}
               disabled={messages.length >= 20}
               style={{
                 flex: 1,
@@ -243,7 +245,7 @@ export default function ChatWidget() {
                 transition: "background 0.2s",
               }}
             >
-              Send
+              {t.chat.send}
             </button>
           </div>
         </div>

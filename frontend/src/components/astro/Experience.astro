@@ -26,8 +26,8 @@ const experiences = [
 
 <section class="experience section" id="experience">
   <div class="container">
-    <h2 class="section-title" data-animate="fade-up">Experience</h2>
-    <p class="section-subtitle" data-animate="fade-up">
+    <h2 class="section-title" data-animate="fade-up" data-i18n="experience.title">Experience</h2>
+    <p class="section-subtitle" data-animate="fade-up" data-i18n="experience.subtitle">
       My professional journey
     </p>
 
@@ -36,10 +36,10 @@ const experiences = [
         <div class="timeline__item" data-animate={i % 2 === 0 ? "slide-left" : "slide-right"}>
           <div class="timeline__dot" />
           <div class="timeline__card">
-            <span class="timeline__period">{exp.period}</span>
-            <h3 class="timeline__role">{exp.role}</h3>
+            <span class="timeline__period" data-i18n-job={`${i}.period`}>{exp.period}</span>
+            <h3 class="timeline__role" data-i18n-job={`${i}.role`}>{exp.role}</h3>
             <h4 class="timeline__company">{exp.company}</h4>
-            <p class="timeline__desc">{exp.description}</p>
+            <p class="timeline__desc" data-i18n-job={`${i}.description`}>{exp.description}</p>
             <div class="timeline__tech">
               {exp.tech.map((t) => (
                 <span class="timeline__badge">{t}</span>

@@ -3,6 +3,7 @@
 const skillGroups = [
   {
     category: "AI & Machine Learning",
+    i18nKey: "ai",
     skills: [
       { name: "LLMs / RAG / GenAI", proficiency: 90 },
       { name: "XGBoost / Scikit-learn", proficiency: 88 },
@@ -13,6 +14,7 @@ const skillGroups = [
   },
   {
     category: "Languages & Frameworks",
+    i18nKey: "languages",
     skills: [
       { name: "Python (Django, FastAPI)", proficiency: 95 },
       { name: "SQL (PostgreSQL, SQL Server)", proficiency: 90 },
@@ -23,6 +25,7 @@ const skillGroups = [
   },
   {
     category: "Data Engineering",
+    i18nKey: "dataEng",
     skills: [
       { name: "Apache Airflow", proficiency: 90 },
       { name: "Celery (Workers)", proficiency: 88 },
@@ -33,6 +36,7 @@ const skillGroups = [
   },
   {
     category: "Cloud & Infrastructure",
+    i18nKey: "cloud",
     skills: [
       { name: "Azure (Container Apps, ACR)", proficiency: 88 },
       { name: "Azure OpenAI Service", proficiency: 85 },
@@ -46,15 +50,15 @@ const skillGroups = [
 
 <section class="skills section" id="skills">
   <div class="container">
-    <h2 class="section-title" data-animate="fade-up">Skills & Technologies</h2>
-    <p class="section-subtitle" data-animate="fade-up">
+    <h2 class="section-title" data-animate="fade-up" data-i18n="skills.title">Skills & Technologies</h2>
+    <p class="section-subtitle" data-animate="fade-up" data-i18n="skills.subtitle">
       Tools and technologies I work with daily
     </p>
 
     <div class="skills__grid" data-animate-stagger>
       {skillGroups.map((group) => (
         <div class="skills__group">
-          <h3 class="skills__group-title">{group.category}</h3>
+          <h3 class="skills__group-title" data-i18n-cat={group.i18nKey}>{group.category}</h3>
           <div class="skills__list">
             {group.skills.map((skill) => (
               <div class="skills__item">
