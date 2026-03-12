@@ -42,28 +42,24 @@ export function CarouselCard({ project, index, totalCards, isActive, onClick }: 
             </span>
           ))}
         </div>
-        {isActive && (project.demo_url || project.repo_url) && (
+        {isActive && (
           <div className={styles.cardLinks}>
+            <a
+              href={`/projects/${project.slug}`}
+              className={styles.cardLink}
+              onClick={(e) => e.stopPropagation()}
+            >
+              View Details
+            </a>
             {project.demo_url && (
               <a
                 href={project.demo_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.cardLink}
-                onClick={(e) => e.stopPropagation()}
-              >
-                Live Demo
-              </a>
-            )}
-            {project.repo_url && (
-              <a
-                href={project.repo_url}
-                target="_blank"
-                rel="noopener noreferrer"
                 className={`${styles.cardLink} ${styles.cardLinkOutline}`}
                 onClick={(e) => e.stopPropagation()}
               >
-                Source Code
+                Live Demo
               </a>
             )}
           </div>

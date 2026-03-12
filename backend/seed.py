@@ -68,8 +68,8 @@ PROJECTS = [
     Project(
         slug="medical-image-classification",
         title="Medical Image Classification",
-        short_description="Multi-modal AI medical diagnosis: chest X-ray (18 pathologies + GradCAM), skin cancer (7 types), and brain tumor (4 classes) — 100% in-browser.",
-        full_description="Built a multi-modal medical image classification platform with 3 AI models running entirely in the browser. Chest X-Ray mode uses DenseNet121 trained on 400K+ images detecting 18 pulmonary conditions with GradCAM heatmaps. Skin Cancer mode uses MobileNetV2 on HAM10000 classifying 7 lesion types including Melanoma. Brain Tumor mode uses Swin Transformer on brain MRIs detecting Glioma, Meningioma, and Pituitary tumors. All inference via ONNX Runtime Web WASM — zero server, complete privacy.",
+        short_description="Multi-modal AI medical diagnosis: chest X-ray (18 pathologies + GradCAM), skin cancer (7 types), brain tumor (4 classes), and breast cancer detection — 100% in-browser.",
+        full_description="Built a multi-modal medical image classification platform with 4 AI models running entirely in the browser. Chest X-Ray mode uses DenseNet121 trained on 400K+ images detecting 18 pulmonary conditions with GradCAM heatmaps. Skin Cancer mode uses MobileNetV2 on HAM10000 classifying 7 lesion types including Melanoma. Brain Tumor mode uses Swin Transformer on brain MRIs detecting Glioma, Meningioma, and Pituitary tumors. Breast Cancer mode uses MobileNetV2 trained on PatchCamelyon (327K histopathology patches) for binary metastatic tissue detection. All inference via ONNX Runtime Web WASM — zero server, complete privacy.",
         category="Computer Vision",
         tech_stack=["React", "TypeScript", "ONNX Runtime Web", "DenseNet121", "MobileNetV2", "Swin Transformer", "GradCAM", "Vite"],
         thumbnail_url="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=640&q=80",
@@ -78,7 +78,7 @@ PROJECTS = [
         repo_url="https://github.com/Dantezp96/medical-image-classification",
         display_order=5,
         is_featured=True,
-        metrics='{"Models": "3", "Classes": "29 total", "Inference": "<1.5s", "Privacy": "100% Browser"}',
+        metrics='{"Models": "4", "Classes": "31 total", "Inference": "<1.5s", "Privacy": "100% Browser"}',
     ),
     Project(
         slug="time-series-forecasting",
