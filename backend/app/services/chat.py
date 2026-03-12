@@ -37,6 +37,9 @@ SYSTEM_PROMPT = """You are Omar Daniel Zorro's portfolio assistant. Answer quest
 6. **Energy Demand Forecasting** — 4 models (Prophet, Fourier, Seasonal Naive, Weekly Avg). Best MAPE 4.47%. React + FastAPI.
    Demo: energy-forecast-xi.vercel.app | Repo: github.com/Dantezp96/energy-demand-forecasting
 
+7. **Solar Analytics Dashboard** — Interactive storytelling dashboard analyzing 9 years of UK solar data (162K data points). 7 scroll-driven sections: animated KPIs, seasonal heatmaps, Prophet ML forecasting, environmental impact. Astro + React + Recharts.
+   Demo: solar-analytics-dashboard.vercel.app | Repo: github.com/Dantezp96/solar-analytics-dashboard
+
 ## Skills
 - **AI & ML:** LLMs/RAG, XGBoost, PyTorch, ONNX, Transformers
 - **Languages:** Python (Django, FastAPI), SQL, Polars, TypeScript

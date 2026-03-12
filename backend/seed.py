@@ -95,6 +95,21 @@ PROJECTS = [
         is_featured=True,
         metrics='{"Best MAPE": "4.47%", "Models": "4", "Records": "35K+"}',
     ),
+    Project(
+        slug="solar-analytics-dashboard",
+        title="Solar Analytics Dashboard",
+        short_description="Interactive storytelling dashboard analyzing 9 years of UK solar generation data — animated KPIs, seasonal heatmaps, Prophet ML forecasting, and environmental impact.",
+        full_description="Scroll-driven analytics dashboard telling the story of UK solar power through data. Analyzes 162K data points (2015-2024) from Sheffield Solar/PV Live. Features 7 interactive sections: animated KPI cards, yearly capacity growth, generation patterns with zoomable charts, seasonal heatmaps (month x hour), capacity factor analysis, Prophet ML forecasting with decomposition, and environmental impact metrics (CO2 avoided, trees equivalent, homes powered). Pre-computed data pipeline in Python (Pandas + Prophet), fully static Astro + React frontend with Recharts visualizations.",
+        category="Data Visualization",
+        tech_stack=["Astro", "React", "TypeScript", "Recharts", "Prophet", "Python", "Pandas"],
+        thumbnail_url="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=640&q=80",
+        cover_image_url="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80",
+        demo_url="https://solar-analytics-dashboard.vercel.app",
+        repo_url="https://github.com/Dantezp96/solar-analytics-dashboard",
+        display_order=7,
+        is_featured=True,
+        metrics='{"Data Points": "162K", "Years": "9", "Sections": "7", "ML Model": "Prophet"}',
+    ),
 ]
 
 SKILLS = [
